@@ -8,7 +8,10 @@
 
 <script>
 export default {
-// 参数校验
+  // 参数校验
+   validate({params,query}){
+    return /^\d+$/.test(params.id);
+   }
 }
 </script>
 

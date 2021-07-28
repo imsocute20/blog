@@ -17,7 +17,6 @@ export default {
         component: resolve(__dirname,'pages/index.vue')
       })
     }
-
     },
     meta: [
       { charset: 'utf-8' },
@@ -32,10 +31,13 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    'element-ui/lib/theme-chalk/index.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    // '~/plugins/element-ui',
+    // '~/plugins/axios.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,9 +51,18 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios'
   ],
+  //跨域
+   axios: {
+     proxy: true
+   },
+   proxy: {
+     "/api": "http://localhost:3001"//代理转发的地址
+   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+
   }
 }
