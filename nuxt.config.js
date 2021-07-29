@@ -36,8 +36,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '~/plugins/element-ui',
-    // '~/plugins/axios.js'
+     "@/plugins/element-ui.js",
+    // "@/plugins/axios.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,21 +48,26 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
   ],
-
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
   //跨域
    axios: {
-     proxy: true
+     proxy: true,
+     credentials:true,
    },
    proxy: {
-     "/api": "http://localhost:3001"//代理转发的地址
+     "/api": {
+       target: 'http://localhost:3001'//代理转发的地址
+     }
    },
-
+  //  定义系统默认loading效果,或者指定一个loading组件
+  loading:{
+    
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-
   }
 }

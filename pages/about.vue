@@ -9,8 +9,12 @@
 <script>
 export default {
   async asyncData({$axios}){
-      let res1 = await $axios({url:'http://localhost:3001/list'});
-      console.log('读取的跨域资源',res1.data.user1);
+      let res = await $axios({url:'http://localhost:3001/list'});
+      console.log('读取的跨域资源',res.data.user1);
+      return{
+        id:res.data.user1.id,
+        name:res.data.user1.name
+      }
   }
 }
 </script>

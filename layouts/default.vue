@@ -1,18 +1,12 @@
 <template>
-<!-- 
-  俺是布局作用
- -->
+<!-- 布局-->
 <div class="blog-box">
   <div class="blog-header">
     <div class="logo-box float-left">
       五条悟不小心成了我老婆的博客
     </div>
     <div class="nav-box float-right">
-      <!-- 页面跳转 -->
-      <nuxt-link to="/index">首页</nuxt-link>
-      <nuxt-link to="/notes">学习笔记</nuxt-link>
-      <nuxt-link to="/about">关于</nuxt-link>
-      <nuxt-link to="/friends">点击就收获一个老婆</nuxt-link>
+      <Nav></Nav>
     </div>
   </div>
   <nuxt/>
@@ -20,14 +14,20 @@
     <p>
       @五条悟结婚了
       <a href="#" target="_blank">别想了点不开</a>
-      (2018-2022) @问就是和小虎
+      (2018-2022) @和小虎
     </p>
-    <span><nuxt-link to="/about">关于我们|</nuxt-link></span>
-    <span><nuxt-link to="/notes">学习笔记|</nuxt-link></span>
-    <span><nuxt-link to="/friends">友情链接</nuxt-link> </span>
+    <nuxt-link to="/about"><span>关于我们|</span></nuxt-link>
+    <nuxt-link to="/notes"><span>学习笔记|</span></nuxt-link>
+    <nuxt-link to="/friends"><span>友情链接</span></nuxt-link>
   </div>
 </div>
 </template>
+<script>
+import Nav from "@/components/nav.vue";
+export default {
+  components:{ Nav }
+}
+</script>
 <style scoped>
 *{
   margin: 0;

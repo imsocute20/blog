@@ -1,13 +1,13 @@
 <template>
-<!-- 俺是页面作用 -->
+<!--页面 -->
 <div>
-  <h1>
-    首页
-  </h1>
   </div>
 </template>
-<script lang="js">
+<script>
 import Vue from 'vue'
 export default Vue.extend({
+    asyncData({ redirect }) {
+    redirect('/index')
+  }
 })
 </script>
