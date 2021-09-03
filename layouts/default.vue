@@ -2,12 +2,13 @@
 <!-- 布局-->
 <div class="blog-box">
   <div class="blog-header">
-    <div class="logo-box float-left">
+    <!-- <div class="logo-box float-left">
       五条悟不小心成了我老婆的博客
     </div>
     <div class="nav-box float-right">
       <Nav></Nav>
-    </div>
+    </div> -->
+    <Nav></Nav>
   </div>
   <nuxt/>
   <div class="blog-footer">
