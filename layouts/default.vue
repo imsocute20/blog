@@ -2,12 +2,6 @@
 <!-- 布局-->
 <div class="blog-box">
   <div class="blog-header">
-    <!-- <div class="logo-box float-left">
-      五条悟不小心成了我老婆的博客
-    </div>
-    <div class="nav-box float-right">
-      <Nav></Nav>
-    </div> -->
     <Nav></Nav>
   </div>
   <nuxt/>
@@ -38,7 +32,8 @@ export default {
   background-color: #f2f2f2;
 }
 .blog-box{
-  width: 1140px;
+  /* width: 1140px; */
+  width: 100%;
   margin: 0 auto;
 }
 .blog-header{

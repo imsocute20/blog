@@ -1,18 +1,22 @@
 <template>
-<div class="nav-box">
+  <div class="nav-box">
     <div class="nav-header">
-        <el-menu
-         :default-active="activeIndex"  mode="horizontal" @select="handleSelect"
-         >
-         <el-menu-item>
-           五条悟不小心成了我老婆的博客
-        </el-menu-item>
-        <el-menu-item  v-for="(item,index) of navs" :key="index" :index="index+''">
-          {{item.title}}
-        </el-menu-item>
-        </el-menu>
+      <el-menu
+        :default-active="activeIndex"  mode="horizontal" @select="handleSelect"
+      >
+      <el-row type="flex" justify="space-between">
+        <el-button type="text">
+            五条悟不小心成了我老婆的博客
+        </el-button>
+        <el-row type="flex" justify="end">
+          <el-menu-item  v-for="(item,index) of navs" :key="index" :index="index+''">
+            {{item.title}}
+          </el-menu-item>
+        </el-row>
+      </el-row>
+      </el-menu>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -24,7 +28,7 @@ export default {
        {path:'/home',title:'首页'},
        {path:'/notes',title:'学习笔记'}, 
        {path:'/about',title:'关于'},
-       {path:'/frends',title:'点击就收获一个老婆'}
+       {path:'/friends',title:'点击就收获一个老婆'}
        ]
     }
   },
@@ -38,7 +42,13 @@ export default {
 </script>
 <style scoped>
 .nav-header{
-  margin-top: 10px;
+  margin: 0;
+  color: #737F90;
+}
+.el-button{
+  color: #737F90; 
+}
+.el-menu-item{
   color: #737F90;
 }
 </style>

@@ -5,6 +5,8 @@ export default {
     htmlAttrs: {
       lang: 'en'
     },
+  // 当ssr设置为false的时候，自定义 Nuxt 加载图标
+  // ssr: false,
   router:{
     middleware:'auth',
     // 扩展路由
@@ -31,14 +33,16 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    { src: "mavon-editor/dist/css/index.css" }
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-     "@/plugins/element-ui.js",
-    // "@/plugins/axios.js"
-  ],
+    "@/plugins/element-ui.js",
+    { src: "~plugins/vue-markdown.js", ssr: false },
+   //  "@/plugins/axios.js"
+ ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
