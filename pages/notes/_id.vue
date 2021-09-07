@@ -3,7 +3,7 @@
     <div class="details-title">
       <el-row type="flex">
           <el-button type="text" icon="el-icon-back" size="medium" @click="onBack">文章管理</el-button>
-          <el-input type="text" placeholder="请输入标题" v-model="title" maxlength="10" show-word-limit>
+          <el-input type="text" placeholder="请输入标题" v-model="notes.title" maxlength="10" show-word-limit>
           </el-input>
           <el-button type="primary" @click="isVisible = true">发布文章</el-button>
           <el-button>保存草稿</el-button>
@@ -11,13 +11,13 @@
     </div>
     <div>
       <client-only>
-        <mavon-editor class="mavonEditor" :ishljs="true" :toolbars="markdownOption" v-model="handbook"/>
+        <mavon-editor class="mavonEditor" :ishljs="true" :toolbars="notes.markdownOption" v-model="notes.handbook"/>
       </client-only>
     </div>
       <el-dialog title="发布文章" :visible.sync="isVisible">
         <el-form v-if="isVisible" ref="form" :model="notes" label-width="80px" size="mini">
             <el-form-item label="标题">
-              <el-input v-model="this.$data.title"></el-input>
+              <el-input v-model="notes.title"></el-input>
             </el-form-item>
             <el-form-item label="文章类型">
         <el-select v-model="notes.value" placeholder="请选择">
@@ -41,7 +41,7 @@
            </el-form-item>
         </el-form>
         <el-divider></el-divider>
-        <p>标题: {{ title }}</p>
+        <p>标题: {{ notes.title }}</p>
         <p>文章类型: {{ notes.value }}</p>
         <p>创作类型: {{ notes.resource }}</p>
       </el-dialog>
@@ -57,9 +57,7 @@ export default {
    //
   data() {
     return {
-      id: '',
-      title: '',
-      markdownOption:{
+    markdownOption:{
         bold: true, // 粗体
         italic: true, // 斜体
         header: true, // 标题
@@ -89,11 +87,11 @@ export default {
         alignright: true, // 右对齐
         subfield: true, // 单双栏模式
         preview: true, // 预览
-      },
+    },
     isVisible: false,
     notes: {
-      date1: '',
-      date2: '',
+      title: '',
+      handbook:"# 这是标题",
       type: [{
         value: 'vue',
         label: 'vue'
@@ -114,11 +112,8 @@ export default {
         label: 'nodejs'
       }],
       value: '',
-      delivery: false,
       resource: '',
-      desc: '',
     },
-      handbook:"# 这是标题",
     }
   },
   methods: {
@@ -128,11 +123,8 @@ export default {
     },
     onSubmit() {
       this.isVisible = true;
-      this.$http.post('https://jsonplaceholder.typicode.com/posts',{
-        title: this.title,
-        body: this.handbook,
-        userId: this.id
-      }).then(function(data){
+      this.$http.post('https://chuwenblog-default-rtdb.firebaseio.com/posts.json',
+        this.notes,this.markdownOption).then(function(data){
         console.log(data);
       })
     },

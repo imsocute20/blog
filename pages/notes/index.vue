@@ -5,7 +5,7 @@ import http from '~/http/';
     <el-button size="small" @click="onAdd">添加</el-button>
     <el-divider></el-divider>
     <h3>显示文章列表</h3>
-    <el-card class="box-card">
+    <el-card class="box-card" @click="onClick">
       <div v-for="index in list" :key="index" class="text item">
           <h3>{{ index.title }}</h3>
           <el-input type="textarea"  v-model="index.body" maxlength="30" show-word-limit disabled></el-input>
@@ -46,6 +46,9 @@ export default {
           id: this.$data.id
           }
       })
+    },
+    onClick() {
+
     }
   }
 }
