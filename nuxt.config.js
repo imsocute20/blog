@@ -41,7 +41,7 @@ export default {
   plugins: [
     "@/plugins/element-ui.js",
     { src: "~plugins/vue-markdown.js", ssr: false },
-   //  "@/plugins/axios.js"
+    '~plugins/vue-resource',
  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -55,7 +55,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
-    'cookie-universal-nuxt'
+    'cookie-universal-nuxt',
+    '@nuxtjs/proxy'
   ],
   //跨域
    axios: {
@@ -64,7 +65,11 @@ export default {
    },
    proxy: {
      "/api": {
-       target: 'http://localhost:3001'//代理转发的地址
+       changeOrigin: true,
+       target: 'http://localhost:3001',//代理转发的地址
+      //  pathRewrite: {
+      //   '^/api': '/'
+      // }
      }
    },
   //  定义系统默认loading效果,或者指定一个loading组件
@@ -73,5 +78,9 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    vender: [
+      'vue-resource',
+      'element-ui'
+    ],
   }
 }

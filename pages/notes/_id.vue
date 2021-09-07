@@ -1,27 +1,23 @@
 <template>
   <div class="details">
-    <div>
-      <el-row :gutter="24">
-        <el-col :span="14">
+    <div class="details-title">
+      <el-row type="flex">
           <el-button type="text" icon="el-icon-back" size="medium" @click="onBack">文章管理</el-button>
-          <el-input type="text" placeholder="请输入标题" v-model="text" maxlength="10" show-word-limit>
+          <el-input type="text" placeholder="请输入标题" v-model="title" maxlength="10" show-word-limit>
           </el-input>
-        </el-col>
-        <el-col :span="10">
           <el-button type="primary" @click="isVisible = true">发布文章</el-button>
           <el-button>保存草稿</el-button>
-        </el-col>
       </el-row>
     </div>
-    <div class="mavonEditor">
-      <no-ssr>
-        <mavon-editor :ishljs="true" :toolbars="markdownOption" v-model="handbook"/>
-      </no-ssr>
+    <div>
+      <client-only>
+        <mavon-editor class="mavonEditor" :ishljs="true" :toolbars="markdownOption" v-model="handbook"/>
+      </client-only>
     </div>
       <el-dialog title="发布文章" :visible.sync="isVisible">
         <el-form v-if="isVisible" ref="form" :model="notes" label-width="80px" size="mini">
             <el-form-item label="标题">
-              <el-input v-model="this.$data.text"></el-input>
+              <el-input v-model="this.$data.title"></el-input>
             </el-form-item>
             <el-form-item label="文章类型">
         <el-select v-model="notes.value" placeholder="请选择">
@@ -44,6 +40,10 @@
         <el-button>取消</el-button>
            </el-form-item>
         </el-form>
+        <el-divider></el-divider>
+        <p>标题: {{ title }}</p>
+        <p>文章类型: {{ notes.value }}</p>
+        <p>创作类型: {{ notes.resource }}</p>
       </el-dialog>
   </div>
 </template>
@@ -57,7 +57,8 @@ export default {
    //
   data() {
     return {
-      text: '',
+      id: '',
+      title: '',
       markdownOption:{
         bold: true, // 粗体
         italic: true, // 斜体
@@ -94,22 +95,22 @@ export default {
       date1: '',
       date2: '',
       type: [{
-        value: '选项1',
+        value: 'vue',
         label: 'vue'
       }, {
-        value: '选项2',
+        value: 'javascript',
         label: 'javascript'
       }, {
-        value: '选项3',
+        value: 'css',
         label: 'css'
       }, {
-        value: '选项4',
+        value: 'ui-app',
         label: 'ui-app'
       }, {
-        value: '选项5',
+        value: 'typescript',
         label: 'typescript'
       },{
-        value: '选项5',
+        value: 'nodejs',
         label: 'nodejs'
       }],
       value: '',
@@ -127,8 +128,14 @@ export default {
     },
     onSubmit() {
       this.isVisible = true;
-      console.log('submit!');
-    }
+      this.$http.post('https://jsonplaceholder.typicode.com/posts',{
+        title: this.title,
+        body: this.handbook,
+        userId: this.id
+      }).then(function(data){
+        console.log(data);
+      })
+    },
   }
 }
 </script>
@@ -136,15 +143,14 @@ export default {
 <style>
 .details-title{
   margin: 20px auto 20px;
-  min-width: 100%;
+}
+.title-left{
+  width: 50%;
 }
 .mavonEditor{
   width: 100%;
-  height: 100%;
+  height: 600px;
   margin-bottom: 10px;
-}
- .el-input{
-   width: 500px;
 }
 .form{
   width: 500px;
