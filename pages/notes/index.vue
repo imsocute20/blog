@@ -1,14 +1,14 @@
 import http from '~/http/';
 <template>
   <div>
-    <h3>学习笔记/手动写生成md文件</h3>
+    <h3>学习笔记</h3>
     <el-button size="small" @click="onAdd">添加</el-button>
     <el-divider></el-divider>
     <h3>显示文章列表</h3>
-    <el-card class="box-card" @click="onClick">
-      <div v-for="index in list" :key="index" class="text item">
-          <h3>{{ index.title }}</h3>
-          <el-input type="textarea"  v-model="index.body" maxlength="30" show-word-limit disabled></el-input>
+    <el-card class="box-card">
+      <div v-for="(item,index) in listData" :key="index" class="text item">
+          <el-button type="text" size="medium" @click="onClick">{{ item.notes.title }}</el-button>
+          <el-input type="textarea"  v-model="item.notes.handbook" maxlength="30" show-word-limit disabled></el-input>
           <el-divider></el-divider>
       </div>
     </el-card>
@@ -24,17 +24,16 @@ import http from '~/http/';
 export default {
     data() {
     return {
-      id: 2,
-      list: [
-      {
-        title: '',
-        body: ''
-      }]
+      id: 1,
+      listData: []
     };
   },
   created() {
-    this.$http.get('https://jsonplaceholder.typicode.com/posts').then(function(data){
-      this.list = data.body.slice(0,5);
+    this.$http.get('https://chuwen-blog-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json?print=pretty').then(function(data){
+     let lists = data.body
+     for(let key  in lists){
+       this.listData.push(lists[key])
+      }
     })
   },
   methods: {
@@ -44,15 +43,24 @@ export default {
         name:'notes-id',
         params:{
           id: this.$data.id
-          }
+        }
       })
     },
     onClick() {
-
+      console.log("查看文章");
+      this.$router.push({
+        name:'noteList',
+        params:{
+          id: this.$data.id
+        }
+      })
     }
   }
 }
 </script>
 
 <style>
+.box-card{
+  margin-bottom: 100px;
+}
 </style>

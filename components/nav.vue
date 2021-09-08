@@ -27,7 +27,7 @@ export default {
      navs:[
        {path:'/home',title:'首页'},
        {path:'/notes',title:'学习笔记'}, 
-       {path:'/about',title:'关于'},
+       {path:'/noteList',title:'关于'},
        {path:'/friends',title:'点击就收获一个老婆'}
        ]
     }
@@ -35,7 +35,6 @@ export default {
   methods: {
       handleSelect(key, keyPath) {
         this.$router.push(this.navs[key].path);
-        console.log(key, keyPath);
       }
   }
 }

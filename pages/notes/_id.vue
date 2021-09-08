@@ -123,9 +123,16 @@ export default {
     },
     onSubmit() {
       this.isVisible = true;
-      this.$http.post('https://chuwenblog-default-rtdb.firebaseio.com/posts.json',
-        this.notes,this.markdownOption).then(function(data){
+      this.$http.post('https://chuwen-blog-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json',
+      {
+        id: this.$route.params.id,
+        notes: this.notes,
+        markdownOption: this.markdownOption
+      }).then(function(data){
         console.log(data);
+        this.$router.push({
+          name: 'notes-id-list'
+        });
       })
     },
   }
