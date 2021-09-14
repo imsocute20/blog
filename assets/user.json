@@ -1,0 +1,23 @@
+[
+   {
+      "userId": 1,
+      "name" : "马超",
+      "email": "123@qq.com",
+      "password" : "password1",
+      "age" : 20
+   },
+  {
+     "userId": 2,
+      "name" : "suresh",
+      "email": "346@qq.com",
+      "password" : "password2",
+      "age" : 17
+   },
+   {
+      "userId": 3,
+      "name" : "ramesh",
+      "email": "789@qq.com",
+      "password" : "password3",
+      "age" : 30
+    }
+]
