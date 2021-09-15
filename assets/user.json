@@ -4,20 +4,41 @@
       "name" : "马超",
       "email": "123@qq.com",
       "password" : "password1",
-      "age" : 20
+      "age" : 20,
+      "note":{
+         "id":"1",
+         "title": "这是1个测试",
+         "handbook":"# 这是标题",
+         "value": "vue",
+         "resource": "原创"
+      }
    },
   {
      "userId": 2,
       "name" : "suresh",
       "email": "346@qq.com",
       "password" : "password2",
-      "age" : 17
+      "age" : 17,
+      "note":{
+         "id":"2",
+         "title": "这是1个测试",
+         "handbook":"# 这是标题",
+         "value": "vue",
+         "resource": "原创"
+      }
    },
    {
       "userId": 3,
       "name" : "ramesh",
       "email": "789@qq.com",
       "password" : "password3",
-      "age" : 30
+      "age" : 30,
+      "note":{
+         "id":"3",
+         "title": "这是1个测试",
+         "handbook":"# 这是标题",
+         "value": "vue",
+         "resource": "原创"
+      }
     }
 ]

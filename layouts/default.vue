@@ -28,8 +28,12 @@ export default {
   margin: 0;
   padding: 0;
 }
-.body{
+body,html{
   background-color: #f2f2f2;
+  margin:0; 
+  padding:0;
+  width: 100%; 
+  height:100%;
 }
 .blog-box{
   /* width: 1140px; */

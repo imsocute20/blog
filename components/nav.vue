@@ -27,7 +27,6 @@ export default {
      navs:[
        {path:'/home',title:'首页'},
        {path:'/notes',title:'学习笔记'}, 
-       {path:'/noteList',title:'关于'},
        {path:'/friends',title:'点击就收获一个老婆'}
        ]
     }

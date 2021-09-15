@@ -3,7 +3,7 @@
     <h3>学习笔记</h3>
     <el-button size="small" @click="onAdd">添加</el-button>
     <el-divider></el-divider>
-    <h3>显示文章列表</h3>
+    <h3>快来发表文章吧</h3>
     <el-card class="box-card">
       <div v-for="(note,index) in listData" :key="index" class="text item">
         <el-row type="flex" justify="space-between">
@@ -47,13 +47,9 @@ export default {
   },
   methods: {
     getNodeList(){
-        // 显示博客列表
+      // 显示博客列表
     this.$http.get('https://chuwen-blog-default-rtdb.asia-southeast1.firebasedatabase.app/notes.json?print=pretty').then(function(data){
       this.listData = data.body;
-    //  for(let key  in lists){
-    //    this.listData.push(lists[key])
-    //    console.log(key)
-    //    }
       }
      )
     },
